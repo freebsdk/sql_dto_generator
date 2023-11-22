@@ -28,7 +28,7 @@ internal class MainProcess
 
     private static async Task GenerateDtoAsync(List<TableInfo> tableInfos)
     {
-        GenerateTypescriptDtoIfDefined(tableInfos);
+        RegisterTypescriptDtoGeneratorIfDefined(tableInfos);
 
         foreach (var kv in _scriptGenerators)
         {
@@ -47,7 +47,7 @@ internal class MainProcess
 
 
 
-    private static void GenerateTypescriptDtoIfDefined(List<TableInfo> tableInfos)
+    private static void RegisterTypescriptDtoGeneratorIfDefined(List<TableInfo> tableInfos)
     {
         var cfgTsOut = ConfigManager.Instance().FindValOrNull(ConfigKeys.ts_out);
         if (cfgTsOut == null) return;
