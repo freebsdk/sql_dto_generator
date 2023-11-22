@@ -1,12 +1,13 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
-using sqlc;
 using sqlc.Config;
+
+namespace sqlc;
 
 internal class MainProcess
 {
     private static string _cfgIdlPath = "";
-    private static readonly Dictionary<IScriptGenerator, string /* out_path */> _scriptGenerators = new();
+    private static readonly Dictionary<IScriptGenerator, string /* out_path */> ScriptGenerators = new();
 
 
 
@@ -30,7 +31,7 @@ internal class MainProcess
     {
         RegisterTypescriptDtoGeneratorIfDefined(tableInfos);
 
-        foreach (var kv in _scriptGenerators)
+        foreach (var kv in ScriptGenerators)
         {
             var scriptGenerator = kv.Key;
             var outPath = kv.Value;
@@ -52,7 +53,7 @@ internal class MainProcess
         var cfgTsOut = ConfigManager.Instance().FindValOrNull(ConfigKeys.ts_out);
         if (cfgTsOut == null) return;
         
-        _scriptGenerators.Add(new GeneratorForTypescript(), cfgTsOut);
+        ScriptGenerators.Add(new GeneratorForTypescript(), cfgTsOut);
     }
 
 
