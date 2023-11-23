@@ -1,0 +1,45 @@
+[
+    {
+        "Database": "test_db",
+        "Name": "tbl_users",
+        "Columns": [
+            {
+                "Name": "id",
+                "Type": "varchar",
+                "Length": 36,
+                "NotNull":true,
+                "Desc": "user id"
+            },
+            {
+                "Name": "nickname",
+                "Type": "varchar",
+                "Length": 20,
+                "NotNull": true,
+                "Desc": "user nickname"
+            },
+            {
+                "Name": "level",
+                "Type": "int32",
+                "NotNull": true,
+                "DefaultValue" : "1",
+                "Desc": "user level" 
+            },
+            {
+                "Name": "join_at",
+                "Type": "int64",
+                "NotNull": true,
+                "Desc": "join time (unix timestamp msec)",
+            }
+        ],
+        "PrimaryKey": [
+            "id"
+        ],
+        "UniqueKeys": [
+            ["nickname"]
+        ],
+        "MultiKeys": [
+            ["level"]
+        ],
+        "Desc": "user information table"
+    }
+]
