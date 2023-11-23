@@ -87,9 +87,18 @@ public class ConfigManager
     {
         foreach (var arg in args)
         {
-            if (arg.StartsWith("-")) OnParseSingleType(arg);
-            else if (arg.StartsWith("--")) OnParseKeyValType(arg);
-            else Register(arg, "");
+            if (arg.StartsWith("--"))
+            {
+                OnParseKeyValType(arg);
+            }
+            else if (arg.StartsWith("-"))
+            {
+                OnParseSingleType(arg);
+            }
+            else
+            {
+                Register(arg, "");    
+            } 
         }
     }
 

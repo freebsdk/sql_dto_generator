@@ -17,7 +17,7 @@ internal class MainProcess
         ConfigManager.Instance().ParseArgs(args);
         CheckRequiredConfigOrExit();
 
-        _cfgIdlPath = ConfigManager.Instance().FindValOrException(ConfigKeys.idl_path);
+        _cfgIdlPath = Path.GetFullPath(ConfigManager.Instance().FindValOrException(ConfigKeys.idl_path));
         var tableInfos = await LoadIdlFileOrExitAsync(_cfgIdlPath);
 
         await GenerateDtoAsync(tableInfos);
